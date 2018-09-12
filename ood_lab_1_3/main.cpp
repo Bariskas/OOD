@@ -10,43 +10,58 @@ using namespace std;
 
 using Behavior = function<void()>;
 
-void flyWithWingsStrategy()
+struct FlyBehavior_t
 {
-	int flightCounter = 0;
-	function<void()> fn = [=]() mutable {
-		cout << "I'm flying with wings!! for the " << (++flightCounter) << " time" << endl;
+	Behavior getFlyWithWingsStrategy()
+	{
+		int flightCounter = 0;
+		
+		return [=]() mutable {
+			cout << "I'm flying with wings!! for the " << (++flightCounter) << " time" << endl;
+		};
+	}
+
+	Behavior getFlyNoWayStrategy()
+	{
+		return []() {
+			cout << "..." << endl;
+		};
+	}
+} FlyBehavior;
+
+
+struct QuackBehavior_t
+{
+	Behavior QuackBehavior = []()
+	{
+		cout << "Quack Quack!!!" << endl;
 	};
-}
 
-void FlyNoWay()
-{
-	cout << "..." << endl;
-}
+	Behavior SqueakBehavior = []()
+	{
+		cout << "SQUEEK!!!" << endl;
+	};
 
-void QuackBehavior()
-{
-	cout << "Quack Quack!!!" << endl;
-}
+	Behavior MuteQuackBehavior = []()
+	{
+		cout << "..." << endl;
+	};
+} QuackBehavior;
 
-void SqueakBehavior()
-{
-	cout << "SQUEEK!!!" << endl;
-}
 
-void MuteQuackBehavior()
+struct DanceBehavior_t
 {
-	cout << "..." << endl;
-}
+	Behavior WaltzDanceBehavior = []()
+	{
+		cout << "It's waltz" << endl;
+	};
 
-void WaltzDanceBehavior()
-{
-	cout << "It's waltz" << endl;
-}
+	Behavior MinuetDanceBehavior = []()
+	{
+		cout << "It's minuet" << endl;
+	};
+} DanceBehavior;
 
-void MinuetDanceBehavior()
-{
-	cout << "It's minuet" << endl;
-}
 
 class Duck
 {
@@ -106,76 +121,15 @@ class MallardDuck : public Duck
 public:
 	MallardDuck()
 	{
-		SetFlyBehavior(flyWithWingsStrategy);
-		SetQuackBehavior(QuackBehavior);
-		SetDanceBehavior(WaltzDanceBehavior);
+		SetFlyBehavior(FlyBehavior.getFlyNoWayStrategy());
+		SetQuackBehavior(QuackBehavior.QuackBehavior);
+		SetDanceBehavior(DanceBehavior.WaltzDanceBehavior);
 	}
-	/*
-	MallardDuck()
-		: Duck(make_unique<Behavior>(), make_unique<Behavior>(),
-			make_unique<Behavior>())
-	{
-	}
-	*/
 	void Display() const override
 	{
 		cout << "I'm mallard duck" << endl;
 	}
 };
-/*
-class RedheadDuck : public Duck
-{
-public:
-	RedheadDuck()
-		: Duck(make_unique<Behavior>(), make_unique<Behavior>(),
-			make_unique<Behavior>())
-	{
-	}
-	void Display() const override
-	{
-		cout << "I'm redhead duck" << endl;
-	}
-};
-class DecoyDuck : public Duck
-{
-public:
-	DecoyDuck()
-		: Duck(make_unique<Behavior>(), make_unique<Behavior>(),
-			make_unique<Behavior>())
-	{
-	}
-	void Display() const override
-	{
-		cout << "I'm decoy duck" << endl;
-	}
-};
-class RubberDuck : public Duck
-{
-public:
-	RubberDuck()
-		: Duck(make_unique<Behavior>(), make_unique<Behavior>(),
-			make_unique<Behavior>())
-	{
-	}
-	void Display() const override
-	{
-		cout << "I'm rubber duck" << endl;
-	}
-};
-
-class ModelDuck : public Duck
-{
-public:
-	ModelDuck()
-		: Duck(make_unique<Behavior>(), make_unique<Behavior>(),
-			make_unique<Behavior>())
-	{
-	}
-	void Display() const override
-	{
-		cout << "I'm model duck" << endl;
-	}
-};*/
 
 void DrawDuck(Duck const& duck)
 {
@@ -191,7 +145,7 @@ void PlayWithDuck(Duck& duck)
 	cout << endl;
 }
 
-void main()
+int main()
 {
 	MallardDuck mallarDuck;
 
@@ -211,4 +165,5 @@ void main()
 	PlayWithDuck(modelDuck);
 	modelDuck.SetFlyBehavior(make_unique<FlyWithWings>());
 	PlayWithDuck(modelDuck);*/
+	return 0;
 }
