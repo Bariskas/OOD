@@ -151,19 +151,6 @@ int main()
 
 	PlayWithDuck(mallarDuck);
 	PlayWithDuck(mallarDuck);
-	/*
-	RedheadDuck redheadDuck;
-	PlayWithDuck(redheadDuck);
 
-	RubberDuck rubberDuck;
-	PlayWithDuck(rubberDuck);
-
-	DecoyDuck decoyDuck;
-	PlayWithDuck(decoyDuck);
-
-	ModelDuck modelDuck;
-	PlayWithDuck(modelDuck);
-	modelDuck.SetFlyBehavior(make_unique<FlyWithWings>());
-	PlayWithDuck(modelDuck);*/
 	return 0;
 }
