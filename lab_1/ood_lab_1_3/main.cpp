@@ -10,9 +10,9 @@ using namespace std;
 
 using Behavior = function<void()>;
 
-struct FlyBehavior_t
+namespace FlyBehavior
 {
-	Behavior getFlyWithWingsStrategy()
+	Behavior GetFlyWithWingsStrategy()
 	{
 		int flightCounter = 0;
 		
@@ -21,16 +21,16 @@ struct FlyBehavior_t
 		};
 	}
 
-	Behavior getFlyNoWayStrategy()
+	Behavior GetFlyNoWayStrategy()
 	{
 		return []() {
 			cout << "..." << endl;
 		};
 	}
-} FlyBehavior;
+}
 
 
-struct QuackBehavior_t
+namespace QuackBehavior
 {
 	Behavior QuackBehavior = []()
 	{
@@ -46,10 +46,10 @@ struct QuackBehavior_t
 	{
 		cout << "..." << endl;
 	};
-} QuackBehavior;
+}
 
 
-struct DanceBehavior_t
+namespace DanceBehavior
 {
 	Behavior WaltzDanceBehavior = []()
 	{
@@ -60,7 +60,12 @@ struct DanceBehavior_t
 	{
 		cout << "It's minuet" << endl;
 	};
-} DanceBehavior;
+
+	Behavior NoDanceBehavior = []()
+	{
+		cout << "I have no legs" << endl;
+	};
+}
 
 
 class Duck
@@ -121,13 +126,73 @@ class MallardDuck : public Duck
 public:
 	MallardDuck()
 	{
-		SetFlyBehavior(FlyBehavior.getFlyNoWayStrategy());
-		SetQuackBehavior(QuackBehavior.QuackBehavior);
-		SetDanceBehavior(DanceBehavior.WaltzDanceBehavior);
+		SetFlyBehavior(FlyBehavior::GetFlyWithWingsStrategy);
+		SetQuackBehavior(QuackBehavior::QuackBehavior);
+		SetDanceBehavior(DanceBehavior::WaltzDanceBehavior);
 	}
 	void Display() const override
 	{
 		cout << "I'm mallard duck" << endl;
+	}
+};
+
+class RedheadDuck : public Duck
+{
+public:
+	RedheadDuck()
+	{
+		SetFlyBehavior(FlyBehavior::GetFlyWithWingsStrategy);
+		SetQuackBehavior(QuackBehavior::QuackBehavior);
+		SetDanceBehavior(DanceBehavior::MinuetDanceBehavior);
+	}
+	void Display() const override
+	{
+		cout << "I'm redhead duck" << endl;
+	}
+};
+
+class DecoyDuck : public Duck
+{
+public:
+	DecoyDuck()
+	{
+		SetFlyBehavior(FlyBehavior::GetFlyNoWayStrategy);
+		SetQuackBehavior(QuackBehavior::MuteQuackBehavior);
+		SetDanceBehavior(DanceBehavior::NoDanceBehavior);
+	}
+	void Display() const override
+	{
+		cout << "I'm decoy duck" << endl;
+	}
+};
+
+class RubberDuck : public Duck
+{
+public:
+	RubberDuck()
+	{
+		SetFlyBehavior(FlyBehavior::GetFlyNoWayStrategy);
+		SetQuackBehavior(QuackBehavior::SqueakBehavior);
+		SetDanceBehavior(DanceBehavior::NoDanceBehavior);
+	}
+	void Display() const override
+	{
+		cout << "I'm rubber duck" << endl;
+	}
+};
+
+class ModelDuck : public Duck
+{
+public:
+	ModelDuck()
+	{
+		SetFlyBehavior(FlyBehavior::GetFlyNoWayStrategy);
+		SetQuackBehavior(QuackBehavior::QuackBehavior);
+		SetDanceBehavior(DanceBehavior::NoDanceBehavior);
+	}
+	void Display() const override
+	{
+		cout << "I'm model duck" << endl;
 	}
 };
 
@@ -145,12 +210,23 @@ void PlayWithDuck(Duck& duck)
 	cout << endl;
 }
 
-int main()
+void main()
 {
 	MallardDuck mallarDuck;
 
 	PlayWithDuck(mallarDuck);
 	PlayWithDuck(mallarDuck);
+	RedheadDuck redheadDuck;
+	PlayWithDuck(redheadDuck);
 
-	return 0;
+	RubberDuck rubberDuck;
+	PlayWithDuck(rubberDuck);
+
+	DecoyDuck decoyDuck;
+	PlayWithDuck(decoyDuck);
+
+	ModelDuck modelDuck;
+	PlayWithDuck(modelDuck);
+	modelDuck.SetFlyBehavior(FlyBehavior::GetFlyWithWingsStrategy);
+	PlayWithDuck(modelDuck);
 }
