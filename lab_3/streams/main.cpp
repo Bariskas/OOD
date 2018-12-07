@@ -39,6 +39,16 @@ public:
 };
 
 
+class CFileInputStream
+{
+
+};
+
+class CMemoryInputStream
+{
+
+};
+
 int main()
 {
 	
