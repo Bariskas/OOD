@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GumballMachineWithState.GumballMachineTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2019-01-28T14:32:37" hostname="DESKTOP-DMH2RSF" time="0.022">
+  <properties/>
+  <testcase name="testHasQuearterState" classname="GumballMachineWithState.GumballMachineTest" time="0.008"/>
+  <testcase name="testRefillGumballState" classname="GumballMachineWithState.GumballMachineTest" time="0.0"/>
+  <testcase name="testTurnCrankWithOneGumballState" classname="GumballMachineWithState.GumballMachineTest" time="0.0"/>
+  <testcase name="testInitialState" classname="GumballMachineWithState.GumballMachineTest" time="0.002"/>
+  <testcase name="testSoldOutState" classname="GumballMachineWithState.GumballMachineTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

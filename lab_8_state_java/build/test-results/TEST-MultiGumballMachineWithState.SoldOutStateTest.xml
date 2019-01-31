@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MultiGumballMachineWithState.SoldOutStateTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-01-28T14:32:37" hostname="DESKTOP-DMH2RSF" time="0.009">
+  <properties/>
+  <testcase name="testToString" classname="MultiGumballMachineWithState.SoldOutStateTest" time="0.001"/>
+  <testcase name="testTurnCrank" classname="MultiGumballMachineWithState.SoldOutStateTest" time="0.001"/>
+  <testcase name="testDispense" classname="MultiGumballMachineWithState.SoldOutStateTest" time="0.0"/>
+  <testcase name="testEjectQuarter" classname="MultiGumballMachineWithState.SoldOutStateTest" time="0.001"/>
+  <testcase name="testRefill" classname="MultiGumballMachineWithState.SoldOutStateTest" time="0.0"/>
+  <testcase name="testInsertQuarter" classname="MultiGumballMachineWithState.SoldOutStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
