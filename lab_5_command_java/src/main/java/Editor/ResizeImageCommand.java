@@ -2,45 +2,30 @@ package Editor;
 
 import java.util.ArrayList;
 
-public class ResizeImageCommand implements DocumentCommand {
-    private ArrayList<DocumentItem> items;
-    private Integer position;
-    private Image targetImage;
+public class ResizeImageCommand extends CommonDocumentCommand {
+    private Resizable resizebleElement;
     private Integer oldWidth;
     private Integer oldHeight;
     private Integer newWidth;
     private Integer newHeight;
 
-    public ResizeImageCommand(ArrayList<DocumentItem> items, Integer position, Integer newWidth, Integer newHeight) {
-        this.items = items;
-        this.position = position;
+    public ResizeImageCommand(Resizable resizableElement, Integer newWidth, Integer newHeight) {
+        this.resizebleElement = resizableElement;
         this.newHeight = newHeight;
         this.newWidth = newWidth;
     }
 
     @Override
     public void execute() {
-        DocumentItem item;
-        try {
-            item = items.get(position);
-        } catch (IndexOutOfBoundsException e) {
-            throw e;
-        }
-
-        targetImage = item.getImage();
-        if (targetImage == null) {
-            throw new IllegalArgumentException("Try to resize Paragraph");
-        }
-
-        oldHeight = targetImage.getHeight();
-        oldWidth = targetImage.getWidth();
-        targetImage.setHeight(newHeight);
-        targetImage.setWidth(newWidth);
+        oldHeight = resizebleElement.getHeight();
+        oldWidth = resizebleElement.getWidth();
+        resizebleElement.setHeight(newHeight);
+        resizebleElement.setWidth(newWidth);
     }
 
     @Override
     public void unexecute() {
-        targetImage.setHeight(oldHeight);
-        targetImage.setWidth(oldWidth);
+        resizebleElement.setHeight(oldHeight);
+        resizebleElement.setWidth(oldWidth);
     }
 }

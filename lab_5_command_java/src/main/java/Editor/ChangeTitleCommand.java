@@ -1,6 +1,6 @@
 package Editor;
 
-public class ChangeTitleCommand implements DocumentCommand {
+public class ChangeTitleCommand extends CommonDocumentCommand {
     private EditorDocument.EditorDocumentTitle documentTitle;
     private String oldTitle;
     private String newTitle;

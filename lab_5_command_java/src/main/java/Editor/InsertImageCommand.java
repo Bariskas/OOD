@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class InsertImageCommand implements DocumentCommand, ResourceContainer {
+public class InsertImageCommand extends CommonDocumentCommand {
     private final InsertDocumentItemCommand insertDocumentItemCommand;
     private final Image image;
     private File imageFile;
@@ -31,6 +31,11 @@ public class InsertImageCommand implements DocumentCommand, ResourceContainer {
         insertDocumentItemCommand.unexecute();
     }
 
+    @Override
+    public void destroy() {
+        deleteImage();
+    }
+
     private void copyImage() {
         File imageDir = new File(Editor.IMAGES_DIR_PATH);
         imageDir.mkdirs();
@@ -49,16 +54,6 @@ public class InsertImageCommand implements DocumentCommand, ResourceContainer {
         } catch (IOException e) {
             System.out.println("Cant copy image: " + image.getOriginPath());
         }
-    }
-
-    @Override
-    public void initResource() {
-        copyImage();
-    }
-
-    @Override
-    public void freeResource() {
-        deleteImage();
     }
 
     private void deleteImage() {

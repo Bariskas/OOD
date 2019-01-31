@@ -2,7 +2,7 @@ package Editor;
 
 import java.util.ArrayList;
 
-public class DeleteItemCommand implements DocumentCommand {
+public class DeleteItemCommand extends CommonDocumentCommand {
     private ArrayList<DocumentItem> items;
     private DocumentItem deletedItem;
     private Integer position;

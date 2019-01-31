@@ -1,6 +1,6 @@
 package Editor;
 
-public class Image {
+public class Image implements Resizable {
     private String originPath;
     private String actualPath;
     private Integer width;

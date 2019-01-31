@@ -83,9 +83,7 @@ public class CommandHistory {
             Integer firstUninvokedIndex = historyItems.indexOf(firstUninvoked);
             List<HistoryItem> uninvokedItems = historyItems.subList(firstUninvokedIndex, historyItems.size());
             for (HistoryItem item : uninvokedItems) {
-                if (item.command instanceof ResourceContainer) {
-                    ((ResourceContainer) item.command).freeResource();
-                }
+                item.command.destroy();
             }
             uninvokedItems.clear();
         }

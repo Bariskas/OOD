@@ -2,7 +2,7 @@ package Editor;
 
 import java.util.ArrayList;
 
-public class ReplaceTextCommand implements DocumentCommand {
+public class ReplaceTextCommand extends CommonDocumentCommand {
     private ArrayList<DocumentItem> items;
     private Integer position;
     private Paragraph targetParagraph;

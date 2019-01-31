@@ -56,6 +56,11 @@ public class CommandHistoryTest {
             public void unexecute() {
 
             }
+
+            @Override
+            public void destroy() {
+
+            }
         };
         return dummyCommand;
     }

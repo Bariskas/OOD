@@ -2,7 +2,7 @@ package Editor;
 
 import java.util.ArrayList;
 
-public class InsertDocumentItemCommand implements DocumentCommand {
+public class InsertDocumentItemCommand extends CommonDocumentCommand {
     private final ArrayList<DocumentItem> items;
     private final DocumentItem item;
     private int insertPos;
