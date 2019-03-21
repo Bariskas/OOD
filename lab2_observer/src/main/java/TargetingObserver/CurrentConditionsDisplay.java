@@ -13,8 +13,8 @@ public class CurrentConditionsDisplay extends BaseDisplay<WeatherConditionData> 
 		conditionStatistics.pressure = weatherDataSource.getPressure();
 	}
 
-	public void display(WeatherConditionData stationStatistics) {
-		System.out.println("Current conditions: " +  stationStatistics.temperature
-			+ "F degrees and " + stationStatistics.humidity + "% humidity " + stationStatistics.pressure + " pressure");
+	public void display(WeatherConditionData displayData) {
+		System.out.println("Current conditions: " +  displayData.temperature
+			+ "F degrees and " + displayData.humidity + "% humidity " + displayData.pressure + " pressure");
 	}
 }

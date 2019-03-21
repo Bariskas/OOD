@@ -27,6 +27,6 @@ abstract public class BaseDisplay<T> implements Observer<BaseObserverable, Weath
 		}
 	}
 
-	abstract public void display(T stationStatistics);
+	abstract public void display(T displayData);
 	abstract protected void updateDisplayData(T displayData, BaseObserverable weatherData, WeatherData.WeatherDataEventType eventType);
 }
