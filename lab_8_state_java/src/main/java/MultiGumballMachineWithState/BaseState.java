@@ -1,11 +1,9 @@
 package MultiGumballMachineWithState;
 
-import GumballMachineWithState.*;
-
 abstract class BaseState implements State {
-    protected GumballMachine gumballMachine;
+    protected GumballMachineContext gumballMachine;
 
-    public BaseState(GumballMachine gumballMachine) {
+    public BaseState(GumballMachineContext gumballMachine) {
         this.gumballMachine = gumballMachine;
     }
 

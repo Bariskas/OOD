@@ -1,121 +1,169 @@
 package MultiGumballMachineWithState;
 
-public class GumballMachine {
- 	public static final int MAX_QUARTER_COUNT = 5;
+public class GumballMachine  {
+    class GumballMachineContextImpl implements GumballMachineContext {
+        public void setSoldOutState() {
+            GumballMachine.this.setSoldOutState();
+        }
 
-	GumballMachineMenu menu;
+        public void setNoQuarterState() {
+            GumballMachine.this.setNoQuarterState();
+        }
 
-	State soldOutState;
-	State noQuarterState;
-	State hasQuarterState;
-	State soldState;
+        public void setHasQuarterState() {
+            GumballMachine.this.setHasQuarterState();
+        }
 
-	State state;
-	int gumballCount = 0;
-	int quarterCount = 0;
+        public void setSoldState() {
+            GumballMachine.this.setSoldState();
+        }
 
-	public GumballMachine(int numberGumballs) {
-		soldOutState = new SoldOutState(this);
-		noQuarterState = new NoQuarterState(this);
-		hasQuarterState = new HasQuarterState(this);
-		soldState = new SoldState(this);
+        public int getGumballCount() {
+            return GumballMachine.this.getGumballCount();
+        }
 
-		this.gumballCount = numberGumballs;
- 		if (numberGumballs > 0) {
-			state = noQuarterState;
-		} else {
-			state = soldOutState;
-		}
+        public int getQuarterCount() {
+            return GumballMachine.this.getQuarterCount();
+        }
 
-		menu = new GumballMachineMenu(this);
-	}
+        public void setGumballCount(int count) {
+            GumballMachine.this.setGumballCount(count);
+        }
 
-	public void start() {
-		menu.run();
-	}
+        public void addQuarter() {
+            GumballMachine.this.addQuarter();
+        }
 
-	public void insertQuarter() {
-		state.insertQuarter();
-	}
+        public void removeQuarter() {
+            GumballMachine.this.removeQuarter();
+        }
 
-	public void ejectQuarter() {
-		state.ejectQuarter();
-	}
+        public void resetQuarterCount() {
+            GumballMachine.this.resetQuarterCount();
+        }
 
-	public void turnCrank() {
-		state.turnCrank();
-		state.dispense();
-	}
+        public void releaseBall() {
+            GumballMachine.this.releaseBall();
+        }
+    }
 
-	void refill(int count) {
-		state.refill(count);
-	}
+    public static final int MAX_QUARTER_COUNT = 5;
 
-	void setState(State state) {
-		this.state = state;
-	}
+    GumballMachineContextImpl contextImpl;
+    GumballMachineMenu menu;
 
-	void releaseBall() {
-		System.out.println("A gumball comes rolling out the slot...");
-		if (gumballCount != 0) {
-			gumballCount = gumballCount - 1;
-		}
-	}
+    State soldOutState;
+    State noQuarterState;
+    State hasQuarterState;
+    State soldState;
 
-	int getGumballCount() {
-		return gumballCount;
-	}
+    State state;
+    private int gumballCount = 0;
+    private int quarterCount = 0;
 
-	void setGumballCount(int count) {
-		gumballCount = count;
-	}
+    public GumballMachine(int numberGumballs) {
+        contextImpl = new GumballMachineContextImpl();
+        soldOutState = new SoldOutState(contextImpl);
+        noQuarterState = new NoQuarterState(contextImpl);
+        hasQuarterState = new HasQuarterState(contextImpl);
+        soldState = new SoldState(contextImpl);
 
-	void addQuarter() {
-		quarterCount++;
-	}
+        this.gumballCount = numberGumballs;
+        if (numberGumballs > 0) {
+            state = noQuarterState;
+        } else {
+            state = soldOutState;
+        }
 
-	void removeQuarter() {
-		quarterCount--;
-	}
+        menu = new GumballMachineMenu(this);
+    }
 
-	void resetQuarterCount() {
-		quarterCount = 0;
-	}
+    public void start() {
+        menu.run();
+    }
 
-	int getQuarterCount() {
-		return quarterCount;
-	}
+    public void insertQuarter() {
+        state.insertQuarter();
+    }
+
+    public void ejectQuarter() {
+        state.ejectQuarter();
+    }
+
+    public void turnCrank() {
+        state.turnCrank();
+        state.dispense();
+    }
+
+    public void refill(int count) {
+        state.refill(count);
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void releaseBall() {
+        System.out.println("A gumball comes rolling out the slot...");
+        if (gumballCount != 0) {
+            gumballCount = gumballCount - 1;
+        }
+    }
+
+    public int getGumballCount() {
+        return gumballCount;
+    }
+
+    public void setGumballCount(int count) {
+        gumballCount = count;
+    }
+
+    public void addQuarter() {
+        quarterCount++;
+    }
+
+    public void removeQuarter() {
+        quarterCount--;
+    }
+
+    public void resetQuarterCount() {
+        quarterCount = 0;
+    }
+
+    public int getQuarterCount() {
+        return quarterCount;
+    }
 
     public State getState() {
         return state;
     }
 
-    public State getSoldOutState() {
-        return soldOutState;
+    public String toString() {
+        StringBuffer result = new StringBuffer();
+        result.append("\nMighty Gumball, Inc.");
+        result.append("\nJava-enabled Standing Gumball Model #2004");
+        result.append("\nInventory: " + gumballCount + " gumball");
+        if (gumballCount != 1) {
+            result.append("s");
+        }
+        result.append("\n");
+        result.append("Machine is " + state.toString() + "\n");
+        return result.toString();
     }
 
-    public State getNoQuarterState() {
-        return noQuarterState;
+    private void setSoldOutState() {
+        state = soldOutState;
     }
 
-    public State getHasQuarterState() {
-        return hasQuarterState;
+    private void setNoQuarterState() {
+        state = noQuarterState;
     }
 
-    public State getSoldState() {
-        return soldState;
+    private void setHasQuarterState() {
+        state = hasQuarterState;
     }
- 
-	public String toString() {
-		StringBuffer result = new StringBuffer();
-		result.append("\nMighty Gumball, Inc.");
-		result.append("\nJava-enabled Standing Gumball Model #2004");
-		result.append("\nInventory: " + gumballCount + " gumball");
-		if (gumballCount != 1) {
-			result.append("s");
-		}
-		result.append("\n");
-		result.append("Machine is " + state.toString() + "\n");
-		return result.toString();
-	}
+
+    private void setSoldState() {
+        state = soldState;
+    }
 }

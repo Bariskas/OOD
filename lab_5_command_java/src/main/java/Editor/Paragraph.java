@@ -1,6 +1,6 @@
 package Editor;
 
-public class Paragraph {
+public class Paragraph implements TextHolder {
     private String text;
 
     public Paragraph() {

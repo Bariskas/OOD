@@ -140,7 +140,7 @@ public class GumballMachine {
         } else if (state == HAS_QUARTER) {
             result.append("waiting for turn of crank");
         } else if (state == SOLD) {
-            result.append("`");
+            result.append("delivering a gumball");
         }
         result.append("\n");
         return result.toString();

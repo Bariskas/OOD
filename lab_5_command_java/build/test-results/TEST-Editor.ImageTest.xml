@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Editor.ImageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-01-31T17:52:26" hostname="DESKTOP-DMH2RSF" time="0.008">
-  <properties/>
-  <testcase name="testToString" classname="Editor.ImageTest" time="0.002"/>
-  <testcase name="testToHtmlString" classname="Editor.ImageTest" time="0.001"/>
-  <testcase name="testResize" classname="Editor.ImageTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

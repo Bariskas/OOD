@@ -22,7 +22,7 @@ public class HasQuarterStateTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         gumballMachine = new GumballMachine(5);
-        hasQuarterState =  new HasQuarterState(gumballMachine);
+        hasQuarterState =  new HasQuarterState(gumballMachine.contextImpl);
         gumballMachine.setState(hasQuarterState);
     }
 

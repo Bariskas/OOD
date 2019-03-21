@@ -2,7 +2,7 @@ package MultiGumballMachineWithState;
 
 public class SoldOutState extends BaseState {
 
-	public SoldOutState(GumballMachine gumballMachine) {
+	public SoldOutState(GumballMachineContext gumballMachine) {
 		super(gumballMachine);
 	}
 
@@ -27,9 +27,9 @@ public class SoldOutState extends BaseState {
 		super.refill(count);
 		if (count > 0) {
 			if (gumballMachine.getQuarterCount() > 0) {
-				gumballMachine.setState(gumballMachine.getHasQuarterState());
+				gumballMachine.setHasQuarterState();
 			} else {
-				gumballMachine.setState(gumballMachine.getNoQuarterState());
+				gumballMachine.setNoQuarterState();
 			}
 		}
 	}

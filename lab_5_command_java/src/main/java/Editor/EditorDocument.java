@@ -3,12 +3,22 @@ package Editor;
 import java.util.ArrayList;
 
 public class EditorDocument {
-    public class EditorDocumentTitle {
+    public class EditorDocumentTitle implements TextHolder {
         public EditorDocumentTitle() {
             value = "";
         }
 
         public String value;
+
+        @Override
+        public String getText() {
+            return value;
+        }
+
+        @Override
+        public void setText(String text) {
+            value = text;
+        }
     }
 
     private EditorDocumentTitle documentTitle;
@@ -35,7 +45,7 @@ public class EditorDocument {
     }
 
     public void setDocumentTitle(String newTitle) {
-        DocumentCommand command = new ChangeTitleCommand(documentTitle, newTitle);
+        DocumentCommand command = new ReplaceTextCommand(documentTitle, newTitle);
         addAndExecuteCommand(command);
     }
 
@@ -100,12 +110,20 @@ public class EditorDocument {
     }
 
     public void replaceText(String newText, Integer position) {
-        DocumentCommand command = new ReplaceTextCommand(items, position, newText);
+        Paragraph paragraph = getItem(position).getParagraph();
+        if (paragraph == null) {
+            throw new IllegalArgumentException("Try to replace text for non paragraph item");
+        }
+        DocumentCommand command = new ReplaceTextCommand(paragraph, newText);
         addAndExecuteCommand(command);
     }
 
     public void resizeImage(Integer position, Integer newWidth, Integer newHeight) {
-        DocumentCommand command = new ResizeImageCommand(items, position, newWidth, newHeight);
+        Image image = getItem(position).getImage();
+        if (image == null) {
+            throw new IllegalArgumentException("Try resize non image item");
+        }
+        DocumentCommand command = new ResizeImageCommand(image, newWidth, newHeight);
         addAndExecuteCommand(command);
     }
 

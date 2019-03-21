@@ -22,7 +22,7 @@ public class NoQuarterStateTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         gumballMachine = new GumballMachine(5);
-        noQuarterState = new NoQuarterState(gumballMachine);
+        noQuarterState = new NoQuarterState(gumballMachine.contextImpl);
         gumballMachine.setState(noQuarterState);
     }
 

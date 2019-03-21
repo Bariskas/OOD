@@ -2,14 +2,14 @@ package MultiGumballMachineWithState;
 
 public class NoQuarterState extends BaseState {
 
-	public NoQuarterState(GumballMachine gumballMachine) {
+	public NoQuarterState(GumballMachineContext gumballMachine) {
 		super(gumballMachine);
 	}
 
 	public void insertQuarter() {
 		System.out.println("You inserted a quarter");
 		gumballMachine.addQuarter();
-		gumballMachine.setState(gumballMachine.getHasQuarterState());
+		gumballMachine.setHasQuarterState();
 	}
  
 	public void ejectQuarter() {

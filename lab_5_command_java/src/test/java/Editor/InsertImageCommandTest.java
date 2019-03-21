@@ -65,6 +65,17 @@ public class InsertImageCommandTest {
         assertEquals(new File("images/image_1.jpg").exists(), true);
     }
 
+    @Test
+    public void testDestroyInsertImage() {
+        Image realImage = new Image("src/test/resources/2.jpg", 50, 50);
+        InsertImageCommand command = new InsertImageCommand(items, realImage, -1);
+        command.execute();
+        command.unexecute();
+        command.destroy();
+        assertEquals(items.size(), 0);
+        assertEquals(new File("images/image_1.jpg").exists(), false);
+    }
+
     @Test (expected = IllegalArgumentException.class)
     public void testInsertInvalidImage() {
         Image unrealImage = new Image("src/test/resources/asfasfsa.jpg", 50, 50);

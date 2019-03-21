@@ -2,7 +2,7 @@ package MultiGumballMachineWithState;
 
 public class HasQuarterState extends BaseState {
 
-	public HasQuarterState(GumballMachine gumballMachine) {
+	public HasQuarterState(GumballMachineContext gumballMachine) {
 		super(gumballMachine);
 	}
 
@@ -22,13 +22,13 @@ public class HasQuarterState extends BaseState {
 			System.out.println("Quarter returned");
 		}
 		gumballMachine.resetQuarterCount();
-		gumballMachine.setState(gumballMachine.getNoQuarterState());
+		gumballMachine.setNoQuarterState();
 	}
  
 	public void turnCrank() {
 		System.out.println("You turned...");
 		gumballMachine.removeQuarter();
-		gumballMachine.setState(gumballMachine.getSoldState());
+		gumballMachine.setSoldState();
 	}
 
     public void dispense() {

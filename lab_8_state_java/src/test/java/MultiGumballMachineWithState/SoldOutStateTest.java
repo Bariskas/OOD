@@ -22,7 +22,7 @@ public class SoldOutStateTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         gumballMachine = new GumballMachine(5);
-        soldOutState = new SoldOutState(gumballMachine);
+        soldOutState = new SoldOutState(gumballMachine.contextImpl);
         gumballMachine.setState(soldOutState);
     }
 

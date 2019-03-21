@@ -329,3 +329,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+lab_5_command_java/build/classes/main/Editor/CommonDocumentCommand.class
+lab_5_command_java/build/classes/main/Editor/CommandHistory.class

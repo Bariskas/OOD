@@ -7,7 +7,6 @@ import java.awt.*;
 import static org.junit.Assert.*;
 
 public class GroupShapeTest {
-
     @Test
     public void testGroupShapeAsContainer() {
         Rectangle rectangle = new Rectangle(new Vertex(100, 400), 100, 60);

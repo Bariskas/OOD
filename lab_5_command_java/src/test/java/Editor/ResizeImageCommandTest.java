@@ -41,17 +41,20 @@ public class ResizeImageCommandTest {
 
     @Test
     public void testResizeImage() {
-        assertEquals(items.get(0).getImage().getHeight(), DEFAULT_HEIGHT);
-        assertEquals(items.get(0).getImage().getWidth(), DEFAULT_WIDTH);
-        ResizeImageCommand command = new ResizeImageCommand(items, 0, 100, 100);
+        Integer newWidth = 100;
+        Integer newHeight = 100;
+
+        Image image = items.get(0).getImage();
+        checkImageSize(image, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        ResizeImageCommand command = new ResizeImageCommand(image, newWidth, newHeight);
         command.execute();
-        assertEquals(items.get(0).getImage().getHeight().intValue(), 100);
-        assertEquals(items.get(0).getImage().getWidth().intValue(), 100);
+        checkImageSize(image, newWidth, newHeight);
+        command.unexecute();
+        checkImageSize(image, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void testTryResizeParagraph() {
-        ResizeImageCommand command = new ResizeImageCommand(items, 1, 100, 100);
-        command.execute();
+    private void checkImageSize(Image image, Integer width, Integer height) {
+        assertEquals(items.get(0).getImage().getHeight(), height);
+        assertEquals(items.get(0).getImage().getWidth(), width);
     }
 }
